@@ -22,7 +22,8 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $credentials = $request->only('email', 'password');
+        $validator = Validator::make($credentials, [
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|max:255',
         ]);
@@ -30,8 +31,6 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
-        $credentials = request(['email', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -106,6 +105,7 @@ class AuthController extends Controller
     {
         return $this->respondWithToken(auth()->refresh(), auth()->user());
     }
+
     /**
      * Get the token array structure.
      *
@@ -119,7 +119,6 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => $user,
         ]);
     }
 }

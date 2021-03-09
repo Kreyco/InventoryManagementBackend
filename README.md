@@ -65,3 +65,13 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ##JWTAuth
 Set secret key:
 php artisan jwt:secret
+
+##Database - MariaDB
+You need to create the Database first
+CREATE DATABASE inventory_management DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+##Seeders
+If is the first time, run:
+`php artisan migrate --seed`
+If you have the DB structure created and want to have a fresh installation just use:
+`php artisan migrate:fresh --seed`
