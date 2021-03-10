@@ -10,11 +10,11 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \App\Models\Order[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
+     * @return \App\Models\Order[]|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
-        return Order::all();
+        return Order::with('products')->get();
     }
 
     /**

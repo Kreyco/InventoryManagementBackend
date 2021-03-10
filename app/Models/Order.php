@@ -9,8 +9,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    const PRIORITY = [1 => 'low', 2 => 'moderate', 3 => 'medium', 4 => 'important', 5 => 'high'];
+
     public function products()
     {
-        return $this->hasMany('App\OrderProduct', 'order_id');
+        return $this->belongsToMany(\App\Models\Product::class)->withPivot(['quantity']);
     }
 }

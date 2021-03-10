@@ -22,7 +22,10 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'        => $this->faker->unique()->numerify('Order ##'),
+            'code'        => $this->faker->unique()->numerify('Code##'),
+            'priority'  => $this->faker->randomElement(array_keys(Order::PRIORITY)),
+            'delivery_date'  => $this->faker->dateTimeBetween('+1 week', '+1 month')
         ];
     }
 }

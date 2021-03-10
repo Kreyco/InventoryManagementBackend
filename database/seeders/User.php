@@ -25,6 +25,15 @@ class User extends Seeder
             'updated_at'        => now()
         ]);
 
+        DB::table('users')->insert([
+            'name'          => 'User test',
+            'email'             => 'user@example.com',
+            'password'          => Hash::make('12345678'),
+            'email_verified_at' => now(),
+            'created_at'        => now(),
+            'updated_at'        => now()
+        ]);
+
         //Using factories
         \App\Models\User::factory(30)->create();
     }

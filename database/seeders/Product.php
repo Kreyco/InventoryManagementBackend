@@ -14,19 +14,9 @@ class Product extends Seeder
      */
     public function run()
     {
-        \App\Models\Order::factory(3)->create();
         \App\Models\Product::factory(10)->create()->each(function ($product) {
-            //Seed the relation with stocks
-            $stocks = factory(App\Stock::class)->create();
-            $product->stocks()->attach($stocks, ['quantity' => 100, 'min_condition' => 40, 'usual_quantity' => 70, 'location' => 'Cellar']);
+            //Seed the relation with Orders
+            $product->orders()->attach(\App\Models\Order::all()->random()->id, ['quantity' => rand(1, 20)]);
         });
-        $products = \App\Models\Product::factory(30)->create();
-
-
-        foreach ($products as $product)
-        {
-            $product->orders()->attach(1, ['quantity' => 100]);
-        }
-
     }
 }

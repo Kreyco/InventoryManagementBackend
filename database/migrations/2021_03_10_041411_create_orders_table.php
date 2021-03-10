@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->string('code', 100);
             $table->integer('priority')->nullable();
+            $table->timestamp('delivery_date', 0)->nullable();
             $table->timestamps();
         });
     }

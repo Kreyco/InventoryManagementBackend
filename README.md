@@ -75,3 +75,8 @@ If is the first time, run:
 `php artisan migrate --seed`
 If you have the DB structure created and want to have a fresh installation just use:
 `php artisan migrate:fresh --seed`
+
+#Login
+Login with the credentials above:
+*Email:* user@example.com
+*Password:* 12345678
