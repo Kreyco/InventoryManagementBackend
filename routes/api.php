@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,10 @@ use App\Http\Controllers\AuthController;
 //});
 
 Route::middleware('auth.jwt')->group(function() {
-    Route::apiResource('products', App\Http\Controllers\ProductController::class)->except(['delete']);
-    Route::apiResource('orders', App\Http\Controllers\OrderController::class)->except(['delete', 'update']);
+    Route::get('orders/searchId', [OrderController::class, 'searchById']);
+    Route::get('orders/searchDate', [OrderController::class, 'searchByDeliveryDate']);
+    Route::apiResource('products', App\Http\Controllers\ProductController::class)->only(['index']);
+    Route::apiResource('orders', OrderController::class)->except(['create', 'show', 'update', 'delete']);
     Route::apiResource('suppliers', App\Http\Controllers\SupplierController::class)->only(['index']);
 });
 

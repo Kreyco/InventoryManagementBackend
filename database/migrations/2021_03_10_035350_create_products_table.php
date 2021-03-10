@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('code', 100);
             $table->float('sell_price', 12, 2)->nullable();
             $table->float('buy_price', 12, 2)->nullable();
+            $table->integer('quantity')->default(0);
             $table->enum('unit', \App\Models\Product::UNITS)->nullable();
             $table->text('notes')->nullable();
             $table->unsignedBigInteger('supplier_id')->nullable();

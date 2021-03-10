@@ -17,48 +17,26 @@ class OrderController extends Controller
         return Order::with('products')->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function searchByDeliveryDate(Request $request)
     {
-        //
+        $orders = Order::with('products')->where('delivery_date', 'like', "{$request->delivery_date}%")->get();
+
+        return $orders;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
+    public function searchById (Request $request)
     {
-        //
-    }
+        $order = Order::with('products')->find($request->id);
+        foreach ($order['products'] as &$product)
+        {
+            $quantity = $product['quantity'];
+            $orderQuantity = $product['pivot']['quantity'];
+            if ($quantity < $orderQuantity)
+            {
+                $product['missing_quantity'] = ($quantity - $orderQuantity) * -1;
+            }
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+        return $order;
     }
 }
