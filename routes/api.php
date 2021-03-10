@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -20,8 +19,9 @@ use App\Http\Controllers\AuthController;
 //});
 
 Route::middleware('auth.jwt')->group(function() {
-    Route::resource('products', App\Http\Controllers\ProductsController::class);
-    Route::resource('orders', 'OrdersController');
+    Route::apiResource('products', App\Http\Controllers\ProductController::class)->except(['delete']);
+    Route::apiResource('orders', App\Http\Controllers\OrderController::class)->except(['delete', 'update']);
+    Route::apiResource('suppliers', App\Http\Controllers\SupplierController::class)->only(['index']);
 });
 
 Route::prefix('auth')->group(function () {

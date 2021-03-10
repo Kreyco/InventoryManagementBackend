@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \App\Models\Supplier[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
-        $products = Product::all();
+        $suppliers = Supplier::all();
 
-        return $products;
+        return $suppliers;
     }
 
     /**
@@ -33,10 +33,10 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Products  $products
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show(Supplier $supplier)
     {
         //
     }
@@ -45,10 +45,10 @@ class ProductsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Products  $products
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, Supplier $supplier)
     {
         //
     }
@@ -56,10 +56,10 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Products  $products
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy(Supplier $supplier)
     {
         //
     }
