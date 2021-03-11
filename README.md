@@ -15,5 +15,5 @@ InventoryManagement is a web application using a [Backend](https://github.com/Kr
 
 #Login
 Login with the credentials above:
-*Email:* user@example.com
-*Password:* 12345678
+`*Email:* user@example.com`
+`*Password:* 12345678`
