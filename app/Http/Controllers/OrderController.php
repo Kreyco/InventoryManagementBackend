@@ -27,13 +27,17 @@ class OrderController extends Controller
     public function searchById (Request $request)
     {
         $order = Order::with('products')->find($request->id);
-        foreach ($order['products'] as &$product)
+
+        if ($order)
         {
-            $quantity = $product['quantity'];
-            $orderQuantity = $product['pivot']['quantity'];
-            if ($quantity < $orderQuantity)
+            foreach ($order['products'] as &$product)
             {
-                $product['missing_quantity'] = ($quantity - $orderQuantity) * -1;
+                $quantity = $product['quantity'];
+                $orderQuantity = $product['pivot']['quantity'];
+                if ($quantity < $orderQuantity)
+                {
+                    $product['missing_quantity'] = ($quantity - $orderQuantity) * -1;
+                }
             }
         }
 
